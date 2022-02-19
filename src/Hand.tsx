@@ -10,14 +10,26 @@ type HandProps = {
    cards: CardType[]
 }
 
+type CardListType = {
+   isDraggingOver: boolean
+}
+
 const Container = styled.div`
    margin: 8px;
    border: 1px solid lightgrey;
    border-radius: 2px;
+   width: 200px;
+
+   display: flex;
+   flex-direction: column;
 `
 
-const CardList = styled.div`
+const CardList = styled.div<CardListType>`
    padding: 8px;
+   transition: background-color 0.2s ease;
+   background-color: ${props => props.isDraggingOver ? 'skyblue' : 'white'};
+   flex-grow: 1;
+   min-height: 100px;
 `
 
 export function Hand(props: HandProps) {
@@ -27,8 +39,9 @@ export function Hand(props: HandProps) {
             {(provided, snapshot) => {
                return (
                   <CardList
-                     ref={provided.innerRef}
                      {...provided.droppableProps}
+                     ref={provided.innerRef}
+                     isDraggingOver={snapshot.isDraggingOver}
                   >
                      {props.cards.map((card, index) => {
                         return (

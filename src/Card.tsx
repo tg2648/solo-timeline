@@ -9,24 +9,29 @@ type CardProps = {
    index: number,
 }
 
-const Container = styled.div`
+type ContainerProps = {
+   isDragging: boolean
+}
+
+const Container = styled.div<ContainerProps>`
    border: 1px solid lightgrey;
    border-radius: 8px;
    padding: 8px;
    margin-bottom: 8px;
-   /* background-color: white; */
+   background-color: ${props => props.isDragging ? 'lightgreen' : 'white'};
 `
 
 export function Card(props: CardProps) {
    return (
       <Draggable draggableId={props.card.id} index={props.index}>
          {
-            (provided) => {
+            (provided, snapshot) => {
                return (
                   <Container
                      {...provided.draggableProps}
                      {...provided.dragHandleProps}
                      ref={provided.innerRef}
+                     isDragging={snapshot.isDragging}
                   >
                      {props.card.content}
                   </Container>
