@@ -31,7 +31,9 @@ export function Hand(props: HandProps) {
                      {...provided.droppableProps}
                   >
                      {props.cards.map((card, index) => {
-                        <Card key={card.id} card={card} index={index} />
+                        return (
+                           <Card key={card.id} card={card} index={index} />
+                        )
                      })}
                      {provided.placeholder}
                   </CardList>
