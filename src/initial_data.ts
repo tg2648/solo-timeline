@@ -8,7 +8,7 @@ export type HandType = {
    cardIds: string[],
 }
 
-type GameData = {
+export type GameData = {
    cards: {
       [index: string]: CardType
    },
@@ -30,11 +30,11 @@ export const initialGameData: GameData = {
    hands: {
       'player': {
          id: 'player',
-         cardIds: ['card-1', 'card-3']
+         cardIds: ['card-1', 'card-2', 'card-3']
       },
       'timeline': {
          id: 'timeline',
-         cardIds: ['card-2']
+         cardIds: ['card-4']
       },
    },
 
