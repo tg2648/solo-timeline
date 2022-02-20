@@ -7,7 +7,7 @@ import { initialGameData, HandType, GameData } from './initial_data'
 import { Hand } from './Hand'
 
 const Container = styled.div`
-  display: flex;
+  margin-bottom: 10px;
 `
 
 function App() {
@@ -15,23 +15,22 @@ function App() {
   const [gameData, setGameData] = useState(initialGameData)
 
   function onDragStart(start: DragStart) {
-    document.body.style.color = 'orange';
-    document.body.style.transition = 'background-color 0.2s ease';
+    // document.body.style.color = 'orange';
+    // document.body.style.transition = 'background-color 0.2s ease';
   }
 
   function onDragUpdate(update: DragUpdate) {
+    // const { destination, source } = update;
+    // const opacity = destination
+    //   ? destination.index / gameData.hands[source.droppableId].cardIds.length
+    //   : 0;
 
-    const { destination, source } = update;
-    const opacity = destination
-      ? destination.index / gameData.hands[source.droppableId].cardIds.length
-      : 0;
-
-    document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`
+    // document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`
   }
 
   function onDragEnd(result: DropResult) {
-    document.body.style.color = 'inherit';
-    document.body.style.backgroundColor = 'inherit';
+    // document.body.style.color = 'inherit';
+    // document.body.style.backgroundColor = 'inherit';
 
     const { destination, source, draggableId } = result;
 
@@ -120,7 +119,11 @@ function App() {
           const cards = hand.cardIds.map(cardId => gameData.cards[cardId])
 
           return (
-            <Hand key={hand.id} hand={hand} cards={cards} />
+            <Hand
+              key={hand.id}
+              hand={hand}
+              cards={cards}
+            />
           )
         })}
       </Container>
