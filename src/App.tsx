@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import { useState } from 'react'
 import { DragDropContext, DragStart, DragUpdate, DropResult } from 'react-beautiful-dnd';
 
-import './App.css'
-import { initialGameData, HandType, GameData } from './initial_data'
+import { initialGameData, HandType } from './initial_data'
 import { Hand } from './Hand'
 
 const Container = styled.div`
   margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `
 
 function App() {
