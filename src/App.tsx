@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react'
 import { DragDropContext, DragStart, DragUpdate, DropResult } from 'react-beautiful-dnd';
 
-import { initialGameData, HandType } from './initial_data'
+import { initialGameData, HandType, CARD_COLLECTION } from './data'
 import { Hand } from './Hand'
 
 const Container = styled.div`
@@ -120,7 +120,7 @@ function App() {
       <Container>
         {gameData.handOrder.map((handId) => {
           const hand = gameData.hands[handId]
-          const cards = hand.cardIds.map(cardId => gameData.cards[cardId])
+          const cards = hand.cardIds.map(cardId => CARD_COLLECTION[cardId])
 
           return (
             <Hand

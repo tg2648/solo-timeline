@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
 
-import { CardType } from './initial_data'
+import { CardType } from './data'
+import sampleImg from './sample.png'
 
 type CardProps = {
    key: string,
@@ -16,16 +17,34 @@ type ContainerProps = {
 
 const Container = styled.div<ContainerProps>`
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
 
    width: 100px;
-   height: 150px;
+   height: 160px;
    border: 1px solid lightgrey;
    border-radius: 8px;
-   padding: 8px;
    margin-right: 8px;
    background-color: ${props => props.isDragging ? 'lightgreen' : 'white'};
+`
+
+const CardContent = styled.div`
+   margin-top: 5px;
+`
+
+const CardYear = styled.div`
+   margin-bottom: 5px;
+`
+
+const CardImg = styled.div`
+   margin-top: 7px;
+   margin-bottom: 7px;
+   height: 100%;
+   width: 100%;
+   background: url(${sampleImg}) no-repeat center;
+   background-size: cover;
+   filter: invert(100%);
 `
 
 export function Card(props: CardProps) {
@@ -44,7 +63,13 @@ export function Card(props: CardProps) {
                      ref={provided.innerRef}
                      isDragging={snapshot.isDragging}
                   >
-                     {props.card.content}
+                     <CardContent>
+                        {props.card.content}
+                     </CardContent>
+                     <CardImg></CardImg>
+                     <CardYear>
+                        {props.card.year}
+                     </CardYear>
                   </Container>
                )
             }

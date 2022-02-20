@@ -1,6 +1,7 @@
 export type CardType = {
       id: string,
       content: string,
+      year: number,
 }
 
 export type HandType = {
@@ -9,32 +10,28 @@ export type HandType = {
 }
 
 export type GameData = {
-   cards: {
-      [index: string]: CardType
-   },
    hands: {
       [index: string]: HandType,
    },
    handOrder: string[]
 }
 
+export const CARD_COLLECTION: {[index: string]: CardType} = {
+   '1': { id: '1', content: 'Card 1', year: 1948},
+   '2': { id: '2', content: 'Card 2', year: 1614},
+   '3': { id: '3', content: 'Card 3', year: 1914},
+   '4': { id: '4', content: 'Card 4', year: 2000},
+}
 
 export const initialGameData: GameData = {
-   cards: {
-      'card-1': { id: 'card-1', content: 'Card 1'},
-      'card-2': { id: 'card-2', content: 'Card 2'},
-      'card-3': { id: 'card-3', content: 'Card 3'},
-      'card-4': { id: 'card-4', content: 'Card 4'},
-   },
-
    hands: {
       'player': {
          id: 'player',
-         cardIds: ['card-1', 'card-2', 'card-3']
+         cardIds: ['1', '2', '3']
       },
       'timeline': {
          id: 'timeline',
-         cardIds: ['card-4']
+         cardIds: []
       },
    },
 

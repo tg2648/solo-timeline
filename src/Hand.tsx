@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Droppable } from 'react-beautiful-dnd'
 
-import { HandType, CardType } from './initial_data'
+import { HandType, CardType } from './data'
 import { Card } from './Card'
 
 type HandProps = {
@@ -29,7 +29,7 @@ const CardList = styled.div<CardListType>`
    transition: background-color 0.2s ease;
    background-color: ${props => props.isDraggingOver ? 'skyblue' : 'white'};
    flex-grow: 1;
-   min-height: 100px;
+   min-height: 170px;
 `
 
 export function Hand(props: HandProps) {
