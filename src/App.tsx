@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DragDropContext, DragStart, DragUpdate, DropResult } from 'react-beautiful-dnd';
 
 import { initialGameData, HandType, CARD_COLLECTION } from './data'
@@ -17,6 +17,46 @@ const Container = styled.div`
 function App() {
 
   const [gameData, setGameData] = useState(initialGameData)
+  const [isTimelineValid, setIsTimelineValid] = useState(true)
+
+  // Index of the latest addition to the timeline
+  const [idxTimelineLatest, setIdxTimelineLatest] = useState(0)
+
+  useEffect(() => {
+    const timelineCards = gameData.hands['timeline'].cardIds
+    const latestCardYear = CARD_COLLECTION[timelineCards[idxTimelineLatest]].year
+
+    if (timelineCards.length === 1) {
+      // Initial state of the timeline, NOP
+      return
+    }
+
+    // Card added to the timeline
+    // Check that years are consecutive
+    console.log('timeline cards changed')
+
+    let valid
+    if (idxTimelineLatest === timelineCards.length - 1) {
+      // Card added to the end
+      console.log('card added end')
+      valid = CARD_COLLECTION[timelineCards[idxTimelineLatest - 1]].year <= latestCardYear
+
+    } else if (idxTimelineLatest === 0) {
+      // Card added to the beginning
+      valid = CARD_COLLECTION[timelineCards[idxTimelineLatest + 1]].year >= latestCardYear
+      console.log('card added beginning')
+
+    } else {
+      // Card added to the middle
+      console.log('card added middle')
+      valid = CARD_COLLECTION[timelineCards[idxTimelineLatest - 1]].year <= latestCardYear &&
+              CARD_COLLECTION[timelineCards[idxTimelineLatest + 1]].year >= latestCardYear
+    }
+
+    setIsTimelineValid(valid)
+
+  }, [gameData.hands['timeline'].cardIds])
+
 
   function onDragStart(start: DragStart) {
     // document.body.style.color = 'orange';
@@ -94,6 +134,7 @@ function App() {
         cardIds: finishCardIds
       }
 
+      setIdxTimelineLatest(destination.index)
       setGameData((oldData) => {
         return {
           ...oldData,
