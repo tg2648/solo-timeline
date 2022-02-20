@@ -55,7 +55,6 @@ function App() {
 
     // Dropping in the same hand
     if (source.droppableId === destination.droppableId) {
-      console.log('same hand');
 
       const newCardIds = Array.from(startHand.cardIds)
 
@@ -68,7 +67,6 @@ function App() {
       }
 
       setGameData((oldData) => {
-        console.log('newhand', newHand);
 
         return {
           ...oldData,
@@ -88,7 +86,6 @@ function App() {
         ...startHand,
         cardIds: startCardIds
       }
-      console.log('newStartHand', newStartHand);
 
       const finishCardIds = Array.from(finishHand.cardIds)
       finishCardIds.splice(destination.index, 0, draggableId);
