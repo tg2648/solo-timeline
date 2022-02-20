@@ -8,6 +8,7 @@ type CardProps = {
    key: string,
    card: CardType,
    index: number,
+   isYearDisplayed: boolean,
    isDragDisabled: boolean,
 }
 
@@ -35,6 +36,10 @@ const CardContent = styled.div`
 
 const CardYear = styled.div`
    margin-bottom: 5px;
+`
+
+const CardYearPlaceholder = styled(CardYear)`
+   min-height: 18px;
 `
 
 const CardImg = styled.div`
@@ -67,9 +72,11 @@ export function Card(props: CardProps) {
                         {props.card.content}
                      </CardContent>
                      <CardImg></CardImg>
-                     <CardYear>
-                        {props.card.year}
-                     </CardYear>
+                        {
+                           props.isYearDisplayed
+                           ? <CardYear>{props.card.year}</CardYear>
+                           : <CardYearPlaceholder/>
+                        }
                   </Container>
                )
             }

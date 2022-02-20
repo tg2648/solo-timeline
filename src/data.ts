@@ -31,7 +31,7 @@ export const initialGameData: GameData = {
       },
       'timeline': {
          id: 'timeline',
-         cardIds: []
+         cardIds: ['4']
       },
    },
 

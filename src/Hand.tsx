@@ -40,6 +40,7 @@ export function Hand(props: HandProps) {
 
                // Only drag from hand to timeline
                const isDragDisabled = props.hand.id === 'timeline'
+               const isYearDisplayed = props.hand.id === 'timeline'
 
                return (
                   <CardList
@@ -49,7 +50,12 @@ export function Hand(props: HandProps) {
                   >
                      {props.cards.map((card, index) => {
                         return (
-                           <Card key={card.id} card={card} index={index} isDragDisabled={isDragDisabled} />
+                           <Card
+                              key={card.id}
+                              card={card}
+                              index={index}
+                              isYearDisplayed={isYearDisplayed}
+                              isDragDisabled={isDragDisabled} />
                         )
                      })}
                      {provided.placeholder}
